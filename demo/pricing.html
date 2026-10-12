@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo Store – Pricing</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      color: #1f2937;
+    }
+
+    nav {
+      background: #111827;
+      padding: 14px 24px;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 48px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .plan {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    button {
+      background: #059669;
+      color: #fff;
+      border: 0;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #plan-message {
+      text-align: center;
+      font-weight: bold;
+      color: #059669;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .plans {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/demo/index.html">Home</a>
+    <a href="/demo/pricing.html">Pricing</a>
+  </nav>
+
+  <section>
+    <h1>Pricing</h1>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>Starter</h3>
+        <p>$9 / mo</p>
+        <button onclick="choosePlan('Starter', '$9 / mo', this)">Choose</button>
+      </div>
+
+      <div class="plan">
+        <h3>Growth</h3>
+        <p>$29 / mo</p>
+        <button onclick="choosePlan('Growth', '$29 / mo', this)">Choose</button>
+      </div>
+
+      <div class="plan">
+        <h3>Scale</h3>
+        <p>$99 / mo</p>
+        <button onclick="choosePlan('Scale', '$99 / mo', this)">Choose</button>
+      </div>
+    </div>
+
+    <p id="plan-message" aria-live="polite"></p>
+  </section>
+
+  <script>
+    function choosePlan(plan, price, button) {
+      document.getElementById('plan-message').textContent =
+        plan + ' plan selected — ' + price;
+
+      document.querySelectorAll('.plan button').forEach(function (btn) {
+        btn.textContent = 'Choose';
+        btn.disabled = false;
+      });
+
+      button.textContent = 'Selected!';
+      button.disabled = true;
+    }
+  </script>
+
+  <!-- Keep analytics tracking enabled -->
+  <script src="/tracker.js" data-endpoint="/api/events"></script>
+</body>
+</html>
